@@ -1,0 +1,44 @@
+package HiLo;
+import java.util.Scanner;//подключаем утилиту сканер для получения ввода пользователя
+public class HilLo {
+    public static void main(String[]args) {
+        Scanner scan = new Scanner(System.in);//создаем объект для сканера
+        String playAgain = " ";//пользовательский ввод для повтора игры
+        //основной цикл игры
+        do {
+
+            int thenumber = (int) (Math.random() * 100 + 1);
+            System.out.println(thenumber);//закомментировать - показывает задуманное игрой число
+            int guess = 0;// переменная для хранения пользовательского числа
+            int numOfTries = 0;// кол-во попыток
+            String answer = " ";//переменная для ответа пользователю по кол-ву попыток
+
+
+            //цикл взаимодействия с пользователем
+            while (guess != thenumber) {
+                System.out.println("Введите число от 1 до 100:");
+                guess = scan.nextInt();///получаем ввод ользователя
+                numOfTries++;//увеличиваем кол-во попыток на 1
+                if (guess < thenumber) {
+                    System.out.println(guess + " меньше, чем загаданное. Повторим.");
+                } else if (guess > thenumber) {
+                    System.out.println(guess + " больше, чем загадонное. Повторим.");
+                } else {
+                    //ниже - формирование корректного ответа при указании кол-ва попыток
+                    if (numOfTries == 1) {
+                        answer = " попытки";
+                    }
+                    else {
+                        answer = " попыток";
+                    }
+                    System.out.println("Вы ввели " + guess + " и победили!");
+                    System.out.println("Вам угадали с "+numOfTries+answer+"!");
+                }
+            }
+            System.out.println("Сыйграем еще? y/n");
+            playAgain = scan.next();// получение пользовательского ввода для повтора игры
+        } while (playAgain.equalsIgnoreCase("y")); //сравнение ввода для повтора игры игнорируя размер шрифта
+        System.out.println(" Спасибо за игру=) ");
+        scan.close();//выключаем сканер
+    }
+}
